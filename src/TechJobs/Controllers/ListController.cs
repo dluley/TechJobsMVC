@@ -32,7 +32,7 @@ namespace TechJobs.Controllers
             if (column.Equals("all"))
             {
                 List<Dictionary<string, string>> jobs = JobData.FindAll();
-                ViewBag.title =  "All Jobs";
+                ViewBag.title =  "List of All Jobs";
                 ViewBag.jobs = jobs;
                 return View("Jobs");
             }

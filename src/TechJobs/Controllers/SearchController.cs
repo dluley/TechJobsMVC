@@ -18,10 +18,21 @@ namespace TechJobs.Controllers
 
         public IActionResult Results(string searchType, string searchTerm)
         {
-            List<Dictionary<string, string>> jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
-            ViewBag.title = "Searching jobs by " + columnChoices[searchType] + " containing: " + searchTerm;
-            ViewBag.jobs = jobs;
+            List<Dictionary<string, string>> Jobs;
+
+            if (searchType.Equals("all"))
+            {
+                Jobs = JobData.FindByValue(searchTerm);
+                ViewBag.columns = ListController.columnChoices;
+            }
+            
+            else
+            {
+                Jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+            }
+
             ViewBag.columns = ListController.columnChoices;
+            ViewBag.jobs = Jobs;
             return View("Index");
 
         }
